@@ -1,47 +1,20 @@
-.TH "C:/Users/vikto/Desktop/jjjj/TMAU-2023/trunk/as0006116/task_01/src/main.cpp" 3 "Version 1.7" "task_01" \" -*- nroff -*-
-.ad l
-.nh
-.SH NAME
-C:/Users/vikto/Desktop/jjjj/TMAU-2023/trunk/as0006116/task_01/src/main.cpp
-.SH SYNOPSIS
-.br
-.PP
-\fC#include <iostream>\fP
-.br
-\fC#include <cmath>\fP
-.br
-\fC#include <array>\fP
-.br
-
-.SS "Functions"
-
-.in +1c
-.ti -1c
-.RI "double \fBcr\fP (int ir)"
-.br
-.RI "Функция для Doxy\&. "
-.ti -1c
-.RI "int \fBmain\fP ()"
-.br
-.in -1c
-.SH "Function Documentation"
-.PP 
-.SS "double cr (int ir)"
-
-.PP
-Функция для Doxy\&. 
-.PP
-Definition at line \fB6\fP of file \fBmain\&.cpp\fP\&.
-.SS "int main ()"
-Константы
-.PP
-ВВод данных
-.PP
-Вычисления по формуле линейной модели
-.PP
-Вычисления по формуле нелинейной модели
-.PP
-Definition at line \fB9\fP of file \fBmain\&.cpp\fP\&.
-.SH "Author"
-.PP 
-Generated automatically by Doxygen for task_01 from the source code\&.
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|xsi|noNamespaceSchemaLocation|version|lang|compounddef| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | |id|kind|language|prot|compoundname|sectiondef| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |briefdescription|detaileddescription|location| | | | | |listofallmembers| | | | |
+| | | | | | | | | |kind|memberdef| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |file|line|column|bodyfile|bodystart|bodyend|member| | | | |
+| | | | | | | | | | |kind|id|prot|static|mutable|type|definition|argsstring|name|qualifiedname|briefdescription|detaileddescription| | | | |inbodydescription|location| | | | | |const|explicit|inline|virt|param| | | | | | | | | |refid|prot|virt|scope|name|
+| | | | | | | | | | | | | | | | | | | | |para|para| | | | | |file|line|column|bodyfile|bodystart|bodyend| | | | |type|declname| | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | | | | |parameterlist| | |simplesect| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | | | | |kind|parameteritem| |kind|para| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | | | | | |parameternamelist|parameterdescription| | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | | | | | |parametername|para| | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+|http://www.w3.org/2001/XMLSchema-instance|compound.xsd|1.9.8|en-US|class_p_i_d_controller|class|C++|public|PIDController|private-attrib|variable|class_p_i_d_controller_1aa11e9fe0c2933f67cbe41c084d320b6a|private|no|no|double|double PIDController::q0| |q0|PIDController::q0| | | | | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|63|12|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|63|-1| | | | | | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|61|1|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|61|98|class_p_i_d_controller_1ae35dbdb545d1c7da72cc2dcdb95ef7bc|public|non-virtual|PIDController|calculateOutput|
+| | | | | | | | | | |variable|class_p_i_d_controller_1af534a1a7c82691b91cb46ab97931ebc1|private|no|no|double|double PIDController::q1| |q1|PIDController::q1| | | | | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|64|12|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|64|-1| | | | | | | | | | | | | | |class_p_i_d_controller_1a79114362589913b84ab57d5e8779b4e9|private|non-virtual|PIDController|e_k_1|
+| | | | | | | | | | |variable|class_p_i_d_controller_1a81f9a883343ea5afd87ea095a1631ee0|private|no|no|double|double PIDController::q2| |q2|PIDController::q2| | | | | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|65|12|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|65|-1| | | | | | | | | | | | | | |class_p_i_d_controller_1ad20ae801be134aab2ebb473fc566b98d|private|non-virtual|PIDController|e_k_2|
+| | | | | | | | | | |variable|class_p_i_d_controller_1a79114362589913b84ab57d5e8779b4e9|private|no|no|double|double PIDController::e_k_1| |e_k_1|PIDController::e_k_1| | | | | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|66|12|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|66|-1| | | | | | | | | | | | | | |class_p_i_d_controller_1a16486ebeebe33f06b68977d1a108d060|public|non-virtual|PIDController|PIDController|
+| | | | | | | | | | |variable|class_p_i_d_controller_1ad20ae801be134aab2ebb473fc566b98d|private|no|no|double|double PIDController::e_k_2| |e_k_2|PIDController::e_k_2| | | | | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|67|12|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|67|-1| | | | | | | | | | | | | | |class_p_i_d_controller_1aa11e9fe0c2933f67cbe41c084d320b6a|private|non-virtual|PIDController|q0|
+| | | | | | | | | | |variable|class_p_i_d_controller_1a0acd0dbf1f4ef101b9d942674db2f178|private|no|no|double|double PIDController::u_k_1| |u_k_1|PIDController::u_k_1| | | | | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|68|12|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|68|-1| | | | | | | | | | | | | | |class_p_i_d_controller_1af534a1a7c82691b91cb46ab97931ebc1|private|non-virtual|PIDController|q1|
+| | | | | | | | | |public-func|function|class_p_i_d_controller_1a16486ebeebe33f06b68977d1a108d060|public|no| | |PIDController::PIDController|(double k, double TD, double T0)|PIDController|PIDController::PIDController|Конструктор ПИД-регулятора |param|k|Параметр k | | | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|77|5|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|77|84|no|no|yes|non-virtual|double|k| | | | | | | | |class_p_i_d_controller_1a81f9a883343ea5afd87ea095a1631ee0|private|non-virtual|PIDController|q2|
+| | | | | | | | | | |function|class_p_i_d_controller_1ae35dbdb545d1c7da72cc2dcdb95ef7bc|public|no| |double|double PIDController::calculateOutput|(double e_k)|calculateOutput|PIDController::calculateOutput|Расчет выходного значения ПИД-регулятора |param|e_k|Ошибка |return|Выходное значение ПИД-регулятора | |D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|91|12|D:/TMAU-2023/trunk/as0006215/task_02/src/main.cpp|91|97|no|no|yes|non-virtual|double|e_k| | | | | | | | |class_p_i_d_controller_1a0acd0dbf1f4ef101b9d942674db2f178|private|non-virtual|PIDController|u_k_1|
+| | | | | | | | | | | | | | | | | | | | | | |T0|Параметр T0 | | | | | | | | | | | | | |double|T0| | | | | | | | | | | | | |
