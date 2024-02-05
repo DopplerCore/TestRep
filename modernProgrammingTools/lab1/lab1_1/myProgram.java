@@ -1,7 +1,5 @@
 package lab1_1;
-
 public class myProgram {
-
     public static void main(String[] args){
         Integer[] arr = new Integer[args.length];
         for(int i = 0; i<args.length;i++){

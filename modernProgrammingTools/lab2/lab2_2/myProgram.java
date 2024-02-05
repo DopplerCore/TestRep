@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 public class myProgram {
     public static void main(String[] args){
         boolean haveC = false;
@@ -54,15 +53,15 @@ public class myProgram {
         }
         String result = "";
         if(haveC){
-            for(int i = 0;i<linesNum.length;i++) if(linesNum[i] >-1) result += Integer.toString(linesNum[i]+1)+" "+tempLines[i]+"\n";
+            for(int i = 0;i<linesNum.length;i++) if(linesNum[i] >-1) result += (linesNum[i]+1)+" "+tempLines[i]+ System.lineSeparator();
         } else if(haveD){
             for(int i = 0;i<linesNum.length;i++) if(linesNum[i] > 0) result += tempLines[i]+"\n";
         }else if(haveU){
             for(int i = 0;i<linesNum.length;i++) if(linesNum[i] == 0) result += tempLines[i]+"\n";
         }
         try{
-        if(haveOFile) Files.write(Paths.get(oFile),result.toString().getBytes());
-        Files.write(Paths.get("file2.txt"),result.toString().getBytes());
+        if(haveOFile) Files.write(Paths.get(oFile),result.getBytes());
+        Files.write(Paths.get("file2.txt"),result.getBytes());
         } catch(IOException e){ e.printStackTrace();}
     }   
 }

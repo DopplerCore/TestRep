@@ -1,5 +1,4 @@
 package lab1_2;
-
 public class myProgram {
     public static void main(String[] args){
         long element = Long.parseLong(args[args.length-1]);
@@ -28,11 +27,8 @@ public class myProgram {
                 result[iter2] = array[i];
                 iter2++;
             }
-            else {
-                j--;
-            }
+            else j--;
         }
         return result;
     }
-    
 }
