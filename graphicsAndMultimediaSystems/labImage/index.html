@@ -3,10 +3,143 @@
     <head>
     </head>
     <body>
-        <div>
-            <button onclick='saveFile()'>Save</button>
-            <a href='' id='linkForSavingFiles' style='display:none' />
+        <div id="div1">
+            <button id="but1">Test</button>
         </div>
-        <script type="text/javascript" src="hah.js"/>
+        <div id="div2">
+            <canvas id="canvas1" width="256" height="256" style="border:1px solid #000000;"></canvas>
+            <input type="file">
+        </div>
+        <div id="div3">
+        </div>
+        <script type="text/javascript">
+
+//НЕ КОСТЫЛЬ!!!
+function preparation(){
+var dt  = new DataTransfer();
+dt.items.add(new File(["Просто текст"], 'justText.txt', {type: 'text/plain'}));
+var file_list = dt.files;
+document.querySelector('input').files = file_list;
+}
+preparation();
+
+//Функция привязанная к кнопке тестирования
+let testFunc = function(){
+  drawImage();
+}
+
+//Функци, которая создаёт промис на получение файла в виде массива байтов
+let getByteFile = function(){
+  return new Promise(function(resolve){
+var file = document.querySelector("input").files[0];
+file.arrayBuffer().then((arrayBuffer)=>{resolve(new Uint8ClampedArray(arrayBuffer));});
+});
+}
+
+//Структура хранящая пояснение к байтовым последовательностям файла
+let BMPImageInfo = {
+  //BITMAPFILEHEADER
+  endianType: ["Порядок байтов",1,2],
+  fileSize: ["Размер файла",3,6],
+  reservedBytes: ["Зарезервированные байты",7,10],
+  pixelDataPos: ["Положение пиксельных данных",11,14],
+  //BITMAPINFO
+  bitmapinfoSize: ["Размер BITMAPINFO",15,18],
+  rasterWidth: ["Ширина растра",19,22],
+  rasterHeight: ["Высота растра и порядок строк",23,26],
+  justOne: ["Тут 1",27,28],
+  pixelSize: ["Кол-во бит на пиксель",29,30],
+  pixelStoreMethod: ["Способ хранения пикселей",31,34],
+  pixelDataSize: ["Размер пиксельных данных",35,38],
+  pixelMeterHorizontal: ["Кол-во пикселей на метр по горизонтали",39,42],
+  pixelMeterVertical: ["Кол-во пикселей на метр по вертикали",43,46],
+  colorTableSize: ["Размер таблицы цветов в ячейках",47,50],
+  colorTableCellNum: ["Кол-во используемых ячеек таблицы",51,54]
+}
+
+//Функция для получения двоичного представления нескольких байтов из файла
+function getByteInfo(array, firstByte, lastByte){
+  var output = "";
+  for(var i = lastByte-1; i>firstByte-2;i--) output += array[i].toString(2).padStart(8, '0');
+  return output;
+}
+
+//Функция создающая элемент с пояснением байтовой последовательности файла
+function createInfo(array,[output,firstByte,lastByte],intSystem){
+  var info = getByteInfo(array,firstByte,lastByte);
+  var superDiv = document.createElement("div");
+  var div1 = document.createElement("div");
+  var div2 = document.createElement("div");
+  var div3 = document.createElement("div");
+  div1.innerHTML = output+": ";
+  div2.innerHTML = info;
+  div3.innerHTML = "тобиш "+parseInt(info,2).toString(intSystem);
+  superDiv.appendChild(div1);
+  superDiv.appendChild(div2);
+  superDiv.appendChild(div3);
+  return superDiv;
+}
+
+//Заполнить canvas пикселями
+function fillCanvas(pixelArray,canvasId) {
+  var canvas = document.getElementById(canvasId);
+  var imageData = new ImageData(pixelArray,canvas.width,canvas.height);
+  var ctx = canvas.getContext("2d");
+  ctx.putImageData(imageData,0,0);
+}
+
+//Функция, которая создаёт промис на получение файла в виде массива цветовых пикселей
+let getPixelFile = function(){
+  return new Promise(function(resolve){
+  getByteFile().then(function(byteFile){
+    var pixelArray = new Uint8ClampedArray(262144);
+    var iterator = 0;
+    var stroka = 255;
+    for(var i=0;i<pixelArray.length/4*3;i+=3){
+      pixelArray[iterator+stroka*1024]=byteFile[i+54+2];
+      iterator++;
+      pixelArray[iterator+stroka*1024]=byteFile[i+54+1];
+      iterator++;
+      pixelArray[iterator+stroka*1024]=byteFile[i+54];
+      iterator++;
+      pixelArray[iterator+stroka*1024]=255;
+      iterator++;
+      if(iterator==1024){iterator=0;stroka--;}
+      }
+      resolve(pixelArray);
+  });
+});
+}
+
+//Выводит картинку и информацию о ней
+function drawImage() {
+  getByteFile().then(function(byteFile){
+    console.log(byteFile.length);
+    var div3 = document.querySelector("#div3");
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.endianType,16));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.fileSize,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.reservedBytes,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.pixelDataPos,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.bitmapinfoSize,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.rasterWidth,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.rasterHeight,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.justOne,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.pixelSize,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.pixelStoreMethod,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.pixelDataSize,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.pixelMeterHorizontal,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.pixelMeterVertical,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.colorTableSize,10));
+    div3.appendChild(createInfo(byteFile,BMPImageInfo.colorTableCellNum,10));
+  });
+
+  getPixelFile().then(function(pixelArray){
+    fillCanvas(pixelArray,"canvas1");
+  });
+}
+
+let but1 = document.querySelector("#but1");
+but1.onclick = testFunc;
+        </script>
     </body>
 </html>
