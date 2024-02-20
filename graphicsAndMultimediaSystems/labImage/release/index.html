@@ -21,6 +21,8 @@ function loadImage(){
   getPixels().then(function(pixelsInfo){
     fillCanvas(pixelsInfo.pixelArray,pixelsInfo.pixelsWidth,pixelsInfo.pixelsHeight,"canvas1");
   });
+  getByteFile().then(function(byteFile){
+  });
 }
 
 //Функция, которая показывает зашумленное изображение
@@ -37,9 +39,36 @@ function showNoisyImage(){
 }
 
 //Функция, которая сохраняет изображение в обычном формате
-function saveCanvasImage(){
+function saveCanvasImageNormal(){
   getByteFile().then(function(byteFile){
     saveImage(byteFile,"canvas1",54);
+  });
+}
+
+//Функция, которая сохраняет изображение в моём формате
+function saveCanvasImageSpecial(){
+  getByteFile().then(function(byteFile){
+
+     var newByteFile = new Uint8ClampedArray(byteFile.length-(54-51));
+    //идентификатор типа файла (2 байта)
+    newByteFile[0] = 0; newByteFile[1] = 1;
+    //глубина цвета (количество бит на один пиксель) (1 байт)
+    newByteFile[0] = 24;
+    //автор формата (20 байт)
+    var output = "Седко Максим";
+    for(var i=3;i<11;i++)newByteFile[i] = 0;
+    for(var i=11;i<23;i++)newByteFile[i] = output.charCodeAt(i);
+    //высота изображения в пикселях (4 байта)
+    for(var i=23;i<27;i++)newByteFile[i] =byteFile[i];
+    //размер изображения в пикселях (4 байта)
+    for(var i=27;i<31;i++)newByteFile[i] =byteFile[i+8];
+    //размер заголовка в байтах (2 байта)
+    newByteFile[31] = 0; newByteFile[32] = 51;
+    //смещение растровых данных от начала файла в байтах (2 байта)
+    //комментарий (16 байт)
+    //итого заголовок - 51 байт
+     console.log(newByteFile.length);
+    saveImage(byteFile,"canvas1",51);
   });
 }
 
@@ -80,7 +109,7 @@ function showFilteredImage(){
             answer.id = ids[g];
           }
         }
-        tmpPixels[i*j] = tmpPixels[answer.id];
+        tmpPixels[j*width+i] = tmpPixels[answer.id];
       }
     }
     for(var i=0;i<tmpPixels.length;i++){
@@ -203,8 +232,11 @@ but2.onclick = showNoisyImage;
 let but3 = document.querySelector("#button3");
 but3.onclick = showFilteredImage;
 
+let but4 = document.querySelector("#button4");
+but4.onclick = saveCanvasImageSpecial;
+
 let but5 = document.querySelector("#button5");
-but5.onclick = saveCanvasImage;
+but5.onclick = saveCanvasImageNormal;
         </script>
     </body>
 </html>
