@@ -69,7 +69,6 @@ public class MyLibrary {
     public Catalog catalog = new Catalog();
     public Order[] orders = new Order[0];
     public BlackList blackList = new BlackList();
-    //Взять книгу
     public boolean takeBook(String readerName,String bookName,String returnDate,boolean onHome){
         for(int i=0;i<catalog.catalog.length;i++){
             if(catalog.catalog[i].name == bookName){ 
@@ -84,7 +83,6 @@ public class MyLibrary {
         }
         return false;
     }
-    //Вернуть книгу
     public boolean returnBook(String bookName){
         for(int i=0;i<orders.length;i++)if(orders[i].bookName == bookName){
             catalog.addBook(bookName);
@@ -99,7 +97,6 @@ public class MyLibrary {
         }
         return false;
     }
-    //Добавить книгу в каталог библиотеки
     public void addBook(String bookName){
         catalog.addBook(bookName);
     }

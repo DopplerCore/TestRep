@@ -7,7 +7,6 @@ public class Apartment {
     private String adress;
     private int rentPrice;
     private boolean isRent;
-
     public Room(int inputRoomNum,
     int inputSpace,
     int inputFloor,
@@ -35,7 +34,6 @@ public class Apartment {
     } 
 }
 public Room[] apartment;
-
 public Apartment(int[] inputRoomNum,
 int[] inputSpace,
 int[] inputFloor,
@@ -49,24 +47,12 @@ boolean[] inputIsRent){
 public Apartment(Room[] inputApartment){
     this.apartment = inputApartment;
 }
-
-// Формирование списков свободных занятых квартир;
-
-// Поиск подходящего варианта (при равенстве количества комнат и этажа и различии площадей в пределах 10 кв. м.);
-
-// Удаление квартиры из списка свободных квартир и перемещение в список сдаваемых квартир;
 public void takeApartments(int takedRoomId){
     apartment[takedRoomId].isRent = true;
 }
-// Вывод полного списка.
 public void printApartment(){
     for(int i = 0;i<apartment.length;i++) apartment[i].printRoom();
 }
-// Список квартир, имеющих заданное число комнат;
-
-// Список квартир, имеющих заданное число комнат и расположенных на этаже, который находится в заданном промежутке;
-
-// Список квартир, имеющих площадь, превосходящую заданную.
 public ApartmentFinder ApartmentFinder(){
     return new ApartmentFinder(apartment);
 }
