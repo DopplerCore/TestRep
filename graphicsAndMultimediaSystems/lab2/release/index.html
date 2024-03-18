@@ -304,48 +304,12 @@ function filterImage(raster){
 //Функция обесцвечивания изображения
 function greyImage(raster){
   let array = raster.array;
-  let brightness = [];
-  for(let i=0;i<array.length;i++){
-    brightness.push(Math.round(array[i].red * 0.1 + array[i].green * 0.6 + array[i].blue * 0.3));
-  }
-  let tmpArray = [...brightness];
-  let width = raster.width;
-  let height = raster.height;
-
-  // 66  67  89  65
-  // 144 200 100 64
-  // 24  124 23  78
-  // 45  34  65  65
-  //
-  //  1  1  1
-  //  1 -2  1
-  // -1 -1 -1
-
-  for(let i=1;i<raster.height-1;i++){
-    for(let j=1;j<raster.width-1;j++){
-
-      let newX = 0;
-      let ids = [{id:(i-1)*width+j-1, koef:1},{id:(i-1)*width+j, koef:1},{id:(i-1)*width+j+1, koef:1},
-      {id:i*width+j-1, koef:1},{id:i*width+j, koef:-2},{id:i*width+j+1, koef:1},
-      {id:(i+1)*width+j-1, koef:-1},{id:(i+1)*width+j, koef:-1},{id:(i+1)*width+j+1, koef:-1},];
-      
-      for(let q=0;q<ids.length;q++){
-        newX += tmpArray[ids[q].id]*ids[q].koef;
-      }
-      brightness[i*width+j]=newX;
-    }
-  }
-
-  for(let i=0;i<array.length;i++){
-    if(brightness[i]<180) {
-      brightness[i]=0;
-    }
-    else {
-      brightness[i] = 255;
-    }
-    array[i].red = brightness[i];
-    array[i].green = brightness[i];
-    array[i].blue = brightness[i];
+  let brightness = 0;
+  for(var i=0;i<array.length;i++){
+    brightness = array[i].red * 0.1 + array[i].green * 0.6 + array[i].blue * 0.3;
+    array[i].red = Math.round(brightness);
+    array[i].green = Math.round(brightness);
+    array[i].blue = Math.round(brightness);
   }
   return raster;
 }
