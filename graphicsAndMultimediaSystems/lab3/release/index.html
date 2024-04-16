@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div style="margin: 20px; display: flex; align-items: center; justify-content: center;">
+          <div>
+            <div style="align-items: center; display: flex; justify-content: center;">
+              <canvas id="canvas" width="256" height="256" style="border:1px solid #000000;"></canvas>
+              <div style="display: flex;" ><span id="output" style="padding: 10px;"></span></div>
+            </div>
+            <div style="align-items: center; display:grid; justify-content:center;">
+              <div style="margin: 10px;">
+                <input id="input1" type="file" value="Выбрать изображение">
+                <button id="button1">Посмотреть изображение</button>
+              </div>
+              <div style="margin: 10px;">
+                <div> Выбранный на изображении цвет: </div>
+                <div id="color" style="width: 200px; height: 50px;"></div>
+                <div id="chosenColor" style="display: none;"></div>
+              </div>
+              <div style="margin: 10px;">
+                <select id="select" name="functions">
+                </select>
+              </div>
+              <div id="container"></div>
+              <div style="margin: 10px;">
+                <button id="button5">Сохранить в собственном формате</button>
+                <button id="button6">Сохранить в том же формате</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="module.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+    </body>
+</html>
